@@ -1,6 +1,7 @@
 name = "shortr-worker"
 type = "javascript"
 workers_dev = true
+compatibility_date = "2021-11-10"
 
 [build]
 command = "npm run build"
