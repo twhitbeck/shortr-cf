@@ -1,0 +1,21 @@
+{
+  "name": "shortr-worker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "build": "esbuild --bundle --sourcemap --outdir=dist index.ts",
+    "dev": "miniflare --watch --debug",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^3.1.1",
+    "esbuild": "^0.13.13",
+    "miniflare": "^1.4.1",
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.4"
+  }
+}
