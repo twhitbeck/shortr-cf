@@ -1,0 +1,14 @@
+@import url("modern-normalize/modern-normalize.css");
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+}
+
+button,
+[role="button"] {
+  cursor: pointer;
+}

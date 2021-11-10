@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 
 import App from "./App";
 
-import "tailwindcss/tailwind.css";
+import "./reset.css";
+import "uno.css";
 
 ReactDOM.render(
   <React.StrictMode>
