@@ -20,7 +20,9 @@ jobs:
         with:
           cache: "npm"
           cache-dependency-path: "worker/package-lock.json"
-      - run: npm install
+      - name: Install dependencies
+        run: npm install
+        working-directory: worker
       - name: Publish
         uses: cloudflare/wrangler-action@1.3.0
         with:
