@@ -1,5 +1,7 @@
 name = "shortr-worker"
 type = "javascript"
+account_id = "7dfe1d461a19d173018f66ba753c61b7"
+
 workers_dev = true
 compatibility_date = "2021-11-10"
 
@@ -7,4 +9,5 @@ compatibility_date = "2021-11-10"
 command = "npm run build"
 
 [build.upload]
-format = "service-worker"
+format = "modules"
+main = "index.js"

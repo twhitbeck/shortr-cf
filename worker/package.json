@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "esbuild --bundle --sourcemap --outdir=dist index.ts",
-    "dev": "miniflare --watch --debug",
+    "build": "esbuild --bundle --platform=neutral --sourcemap --outdir=dist index.ts",
+    "dev": "miniflare --watch --modules --debug",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

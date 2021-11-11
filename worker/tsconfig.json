@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es2020",
+    "target": "esnext",
     "module": "commonjs",
     "lib": ["es2020"],
-    "types": ["@cloudflare/workers-types"]
+    "types": ["@cloudflare/workers-types"],
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "importsNotUsedAsValues": "error"
   }
 }
