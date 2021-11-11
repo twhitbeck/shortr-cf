@@ -2,11 +2,12 @@
   "name": "shortr-worker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "type": "module",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "esbuild --bundle --platform=neutral --sourcemap --outdir=dist index.ts",
+    "build": "tsc && esbuild --bundle --platform=neutral --sourcemap --outdir=dist index.ts",
     "dev": "miniflare --watch --modules --debug",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc"
   },
   "keywords": [],
   "author": "",

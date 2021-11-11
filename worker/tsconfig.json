@@ -6,6 +6,7 @@
     "types": ["@cloudflare/workers-types"],
     "isolatedModules": true,
     "esModuleInterop": true,
-    "importsNotUsedAsValues": "error"
+    "importsNotUsedAsValues": "error",
+    "noEmit": true
   }
 }

@@ -1,7 +1,7 @@
 import generateRandomSlug from "./generate-random-slug";
 
-const handler: ExportedHandler = {
-  fetch(request, env, ctx) {
+const handler: ExportedHandler<{ URLS: KVNamespace }> = {
+  fetch(request, { URLS }, ctx) {
     const slug = generateRandomSlug();
 
     return new Response(slug);

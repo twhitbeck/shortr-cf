@@ -5,6 +5,10 @@ account_id = "7dfe1d461a19d173018f66ba753c61b7"
 workers_dev = true
 compatibility_date = "2021-11-10"
 
+kv_namespaces = [
+  { binding = "URLS", id = "b68db04c8b5242e4ad1aae9cf6954d69" }
+]
+
 [build]
 command = "npm run build"
 
