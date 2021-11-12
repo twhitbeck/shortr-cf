@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "tsc && esbuild --bundle --platform=neutral --sourcemap --outfile=dist/index.mjs index.ts",
+    "build": "tsc && esbuild --bundle --platform=neutral --outfile=dist/index.mjs index.ts",
     "dev": "miniflare --watch --modules --debug",
     "test": "tsc"
   },
