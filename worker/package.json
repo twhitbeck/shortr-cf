@@ -2,10 +2,8 @@
   "name": "shortr-worker",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
-  "main": "dist/index.js",
   "scripts": {
-    "build": "tsc && esbuild --bundle --platform=neutral --sourcemap --outdir=dist index.ts",
+    "build": "tsc && esbuild --bundle --platform=neutral --sourcemap --outfile=dist/index.mjs index.ts",
     "dev": "miniflare --watch --modules --debug",
     "test": "tsc"
   },
@@ -14,6 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "@cloudflare/workers-types": "^3.1.1",
+    "@cloudflare/wrangler": "^1.19.5",
     "esbuild": "^0.13.13",
     "miniflare": "^1.4.1",
     "prettier": "^2.4.1",
