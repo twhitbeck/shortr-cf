@@ -3,7 +3,21 @@ import Input from "./Input";
 import Button from "./Button";
 
 async function createSlug(url: string): Promise<string> {
-  return "foo";
+  const response = await fetch(
+    "https://shortr-worker.twhitbeck.workers.dev/create",
+    {
+      method: "POST",
+      body: url,
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Bad Response: ${response.status} ${response.statusText}`);
+  }
+
+  const slug = await response.text();
+
+  return slug;
 }
 
 export default function UrlForm({
