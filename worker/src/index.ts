@@ -2,33 +2,62 @@ import generateRandomSlug from "./generate-random-slug";
 
 const handler: ExportedHandler<{ URLS: KVNamespace }> = {
   async fetch(request, { URLS }, ctx) {
-    if (request.method !== "POST") {
-      return new Response(null, { status: 405 });
+    const requestUrl = new URL(request.url);
+
+    if (requestUrl.pathname === "/create") {
+      const headers = {
+        "access-control-allow-origin": "https://shortr-cf.pages.dev",
+      };
+
+      if (request.method !== "POST") {
+        return new Response(null, { status: 405, headers });
+      }
+
+      const body = await request.text();
+
+      if (!body) {
+        return new Response(null, { status: 400, headers });
+      }
+
+      try {
+        new URL(body);
+      } catch (error) {
+        return new Response(null, { status: 400, headers });
+      }
+
+      const existingSlug = await URLS.get(body);
+
+      if (existingSlug) {
+        return new Response(existingSlug, { headers });
+      }
+
+      const slug = generateRandomSlug();
+
+      await Promise.all([URLS.put(body, slug), URLS.put(slug, body)]);
+
+      return new Response(slug, { headers });
     }
 
-    const body = await request.text();
+    const slugMatch = /^\/([^/]+)$/.exec(requestUrl.pathname);
 
-    if (!body) {
-      return new Response(null, { status: 400 });
+    if (!slugMatch) {
+      return new Response(null, { status: 404 });
     }
 
-    try {
-      new URL(body);
-    } catch (error) {
-      return new Response(null, { status: 400 });
+    const [, slug] = slugMatch;
+
+    const url = await URLS.get(slug);
+
+    if (!url) {
+      return new Response(null, { status: 404 });
     }
 
-    const existingSlug = await URLS.get(body);
-
-    if (existingSlug) {
-      return new Response(existingSlug);
-    }
-
-    const slug = generateRandomSlug();
-
-    await URLS.put(body, slug);
-
-    return new Response(slug);
+    return new Response(null, {
+      status: 302,
+      headers: {
+        location: url,
+      },
+    });
   },
 };
 
