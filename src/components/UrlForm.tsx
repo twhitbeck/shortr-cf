@@ -3,13 +3,10 @@ import Input from "./Input";
 import Button from "./Button";
 
 async function createSlug(url: string): Promise<string> {
-  const response = await fetch(
-    "https://shortr-worker.twhitbeck.workers.dev/create",
-    {
-      method: "POST",
-      body: url,
-    }
-  );
+  const response = await fetch("/create", {
+    method: "POST",
+    body: url,
+  });
 
   if (!response.ok) {
     throw new Error(`Bad Response: ${response.status} ${response.statusText}`);

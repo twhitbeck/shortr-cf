@@ -139,7 +139,7 @@ function App() {
                 onCreateFulfilled={(slug) => {
                   dispatch({
                     type: "GOT_SLUG",
-                    shortUrl: `https://shortr-worker.twhitbeck.workers.dev/${slug}`,
+                    shortUrl: new URL(slug, location.origin).toString(),
                   });
                 }}
                 onCreateRejected={(error) => {

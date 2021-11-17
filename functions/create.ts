@@ -1,4 +1,35 @@
-import generateRandomSlug from "./generate-random-slug";
+/// <reference types="@cloudflare/workers-types" />
+
+import generateRandomSlug from "./utils/generate-random-slug";
+
+export const onRequestPost: PagesFunction<{ URLS: KVNamespace }> = async ({
+  request,
+  env: { URLS },
+}) => {
+  const url = await request.text();
+
+  try {
+    new URL(url);
+  } catch (error) {
+    return new Response(null, { status: 400 });
+  }
+
+  const slug = await (async () => {
+    const existingSlug = await URLS.get(url);
+
+    if (existingSlug) {
+      return existingSlug;
+    }
+
+    const newSlug = generateRandomSlug();
+
+    await Promise.all([URLS.put(url, newSlug), URLS.put(newSlug, url)]);
+
+    return newSlug;
+  })();
+
+  return new Response(slug);
+};
 
 const handler: ExportedHandler<{ URLS: KVNamespace }> = {
   async fetch(request, { URLS }, ctx) {
